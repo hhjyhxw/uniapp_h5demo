@@ -1,0 +1,1 @@
+<view class="content"><image class="logo" src="/static/logo.png"></image><view class="text-area"><text class="title">{{"Hello:"+user.nickname}}</text><text class="title">{{hhh}}</text></view><view class="text-area"><text class="title">{{"latitude:"+latitude}}</text></view><view class="text-area"><text class="title">{{"longitude:"+longitude}}</text></view></view>
