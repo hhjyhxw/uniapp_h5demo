@@ -31,14 +31,22 @@ export const setDefaut = (data) => { return http.get('/address!setDefaut.action'
 //##################扫码活动start#####
 //扫码活动主页
 export const scanIndex = (data) => { return http.get('/api/scan/index', data)};
-//扫码活动主页
+//获取微信jssdk
 export const getjssdk = (data) => { return http.get('/jsSdkConfig/getJsSdkConfig', data)};
+//获取我的核心二维码
+export const getVerifyUserCode = (data) => { return http.get('/api/verify/getVerifyUserCode', data)};
+//扫码后点击确认核销
+export const doverify = (data) => { return http.get('/api/verify/doverify', data)};
+
+
+
 //###################扫码活动end#####
 
 
 
 export default {
 	scanIndex,
-	getjssdk
+	getjssdk,
+	doverify
 
 }

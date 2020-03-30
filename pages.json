@@ -1,6 +1,10 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
+		    "path" : "pages/websockettest/websockettest",
+		    "style" : {}
+		},
+		{
 			"path": "pages/index/index",
 			"style": {
 				"navigationStyle":"custom",
@@ -39,6 +43,7 @@
             "path" : "pages/verifyuserveryFair/verifyuserveryFair",
             "style" : {}
         }
+        
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

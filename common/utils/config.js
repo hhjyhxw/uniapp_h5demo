@@ -25,6 +25,9 @@ const loginUrl_dev = 'http://ld.haiyunzy.com/zlbean/frontpage/activity/index';
 const hosturl_dev = 'http://ld.haiyunzy.com/zlbean/';
 const imghosturl_dev =  'http://ld.haiyunzy.com/zlbean/';
 const jssdkUrl_dev =  'http://ld.haiyunzy.com/zlbean/jsSdkConfig/getJsSdkConfig';
+const websocketUrl_dev =  'ws://ld.haiyunzy.com/zlbean/api/webscoket';
+// const websocketUrl_dev =  'ws://192.168.110.1:8081/webscoket';
+
 
 /**
  * 正式服务器地址
@@ -35,7 +38,7 @@ const loginUrl_pro = 'http://ld.thewm.cn/zlbean/frontpage/activity/index';
 const hosturl_pro = 'http://ld.thewm.cn/zlbean/';
 const imghosturl_pro =  'http://ld.thewm.cn/zlbean/';
 const jssdkUrl_pro =  'http://ld.thewm.com/zlbean/jsSdkConfig/getJsSdkConfig';
-
+const websocketUrl_pro =  'ws://ld.thewm.com/zlbean/api/webscoket';
 
 export default {
     client,
@@ -48,4 +51,6 @@ export default {
 	hosturl: active === 'dev' ? hosturl_dev : hosturl_pro,
 	imghosturl: active === 'dev' ? imghosturl_dev : imghosturl_pro,
 	jssdkUrl: active === 'dev' ? jssdkUrl_dev : jssdkUrl_pro,
+	websocketUrl: active === 'dev' ? websocketUrl_dev : websocketUrl_pro,
+	
 }

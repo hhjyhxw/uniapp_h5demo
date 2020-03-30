@@ -15,25 +15,18 @@
 			<button @click="sharetoWx">分享</button>
 		</view>
 		<view class="text-area">
-			<image :src="qcode" class="qcode"></image>
+			<image :src="qcode" class="qcode" @click="goqcode"></image>
 		</view>
 		<view class="text-area">
 			<button @click="saoyisao">扫一扫</button>
 		</view>
 		
-		<view class="qrimg">
-		   <tki-qrcode v-if="ifShow" cid="qrcode1" ref="qrcode" :val="val" :size="size" :unit="unit" :background="background" :foreground="foreground" :pdground="pdground" :icon="icon" :iconSize="iconsize" :lv="lv" :onval="onval" :loadMake="loadMake" :usingComponents="true" @result="qrR" />
-		   </view>
-		</view>
+		
 	</view>
 </template>
 
 <script>
-	//import uQRCode from '@/common/uqrcode.js'
-	import QR from "@/common/utils/wxqrcode.js" // 二维码生成器  
-	import tkiQrcode from '@/components/tki-qrcode/tki-qrcode.vue'
 	export default {
-		 components: {tkiQrcode},
 		data() {
 			return {
 				title: 'Hello',
@@ -46,21 +39,7 @@
 				latitude:12,
 				longitude:23,
 				qcode:'',//核销二维码，核销员标识、扫码者标识
-				
-				/////uni-app-qrcode///////
-				ifShow: true,
-				val: 'http://ld.haiyunzy.com/zlbean/frontpage/activity/index?activityId=1&code=sfsfsfsafajljafl', // 要生成的二维码值
-				size: 200, // 二维码大小
-				unit: 'upx', // 单位
-				background: '#b4e9e2', // 背景色
-				foreground: '#309286', // 前景色
-				pdground: '#32dbc6', // 角标色
-				icon: '', // 二维码图标
-				iconsize: 40, // 二维码图标大小
-				lv: 3, // 二维码容错级别 ， 一般不用设置，默认就行
-				onval: false, // val值变化时自动重新生成二维码
-				loadMake: true, // 组件加载完成后自动生成二维码
-				src: '' // 二维码生成后的图片地址或base64
+			
 			}
 		},
 		onLoad(option) {
@@ -82,14 +61,11 @@
 				this.activityId = uni.getStorageSync("activityId");
 				this.getScanindexInfo();
 			}
-			//this.showqcode();
 			
 			
 		},
 		onShow:function(){
 			this.getssdk();
-			//this.showqcode();
-			this.creatQrcode();
 		},
 		methods: {
 			//获取主题信息
@@ -105,20 +81,15 @@
 							}
 						}); 
 			},
-			//wxqrcode生成二维码
-			showqcode(){
-				let img = QR.createQrCodeImg('http://ld.haiyunzy.com/zlbean/frontpage/activity/index?activityId=1&code=sfsfsfsafajljafl', {  
-				     size: parseInt(600)//二维码大小  
-				});
-				this.qcode = img;
+			async goqcode(){
+				 let result = await this.$api.getVerifyUserCode({activityId:this.activityId});
+				 console.log("goqcode_result==="+JSON.stringify(result)); //h5token 、accetoken
+				 if(result.code==0){
+					 uni.navigateTo({
+					 	url:'/pages/websockettest/websockettest?userId='+this.user.id+'&code='+result.code
+					 })
+				 }
 				
-			},
-			//uni-app-qrcode生成二维码
-			creatQrcode() {
-				this.$refs.qrcode._makeCode()
-			},
-			qrR(res) {
-				this.src = res
 			},
 			//获取jssdk
 			getssdk(){
@@ -226,8 +197,8 @@
 		color: #8f8f94;
 	}
 	.qcode{
-		width: 2rem;
-		height: 2rem;
+		width: 5rem;
+		height: 5rem;
 		margin: 1rem auto;
 	}
 </style>
