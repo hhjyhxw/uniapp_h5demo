@@ -14,6 +14,31 @@
             "path" : "pages/login/login",
             "style" : {}
         }
+        ,{
+            "path" : "pages/verify/verify",
+            "style": {
+            	"navigationStyle":"custom",
+            	"app-plus":{
+            		"titleView":false
+            	}
+            }
+        }
+        ,{
+            "path" : "pages/cosuuserverySuc/cosuuserverySuc",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/cosuuserveryFair/cosuuserveryFair",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/verifyuserverySuc/verifyuserverySuc",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/verifyuserveryFair/verifyuserveryFair",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
