@@ -47,6 +47,7 @@ export const doverify = (data) => { return http.get('/api/verify/doverify', data
 export default {
 	scanIndex,
 	getjssdk,
-	doverify
+	doverify,
+	getVerifyUserCode
 
 }

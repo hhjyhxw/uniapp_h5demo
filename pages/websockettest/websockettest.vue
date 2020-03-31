@@ -67,7 +67,7 @@
 						var socketOpen = false;
 						var that = this;
 						uni.connectSocket({
-						 url: this.$config.websocketUrl+'/'+this.userId+'?id='+this.userId,
+						 url: this.$config.websocketUrl+'?id='+this.userId,
 						 // url:'ws://192.168.110.1:8081/api/webscoket/2/'
 						});
 						uni.onSocketOpen(function (res) {
@@ -93,7 +93,7 @@
 			},
 			closeWebsocket(){
 				uni.connectSocket({
-				 url: this.$config.websocketUrl+'/'+this.userId+'?id='+this.userId,
+				 url: this.$config.websocketUrl+'?id='+this.userId,
 				});
 				uni.onSocketClose(function (res) {
 				  console.log('WebSocket 已关闭！');

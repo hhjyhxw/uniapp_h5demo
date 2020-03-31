@@ -21,13 +21,15 @@
 			
 				code:'',//核销员核销码加密临时编号
 				prizelistL:[],//奖品列表
-				successmessage:''
+				successmessage:'',
+				activityId:'',
+				
 			}
 		},
 		onLoad(option) {
 			console.log("verifyonload_opiton=="+JSON.stringify(option))
 			this.code = option.code;
-			
+			this.activityId = option.activityId;
 		},
 		methods: {
 			//加载我的未核销奖品列表
@@ -36,7 +38,13 @@
 			},
 			//去核销
 			doverify(){
-				this.$api.doverify({activityId:uni.getStorageInfoSync("activityId"),prizeids:'id1@@@id2@@@id3'}).then(res =>
+				var data = {
+					activityId:this.activityId,
+					prizeids:'id1@@@id2@@@id3'
+				};
+				this.$msg(JSON.stringify(data))
+				console.log("doverify_data==="+JSON.stringify(data)); //h5token 、accetoken
+				this.$api.doverify(data).then(res =>
 						{
 							console.log("res==="+JSON.stringify(res)); //h5token 、accetoken
 							if(res.code==0){

@@ -1,9 +1,7 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-		{
-		    "path" : "pages/websockettest/websockettest",
-		    "style" : {}
-		},
+		
+		
 		{
 			"path": "pages/index/index",
 			"style": {
@@ -13,7 +11,17 @@
 				}
 			}
 			
+		},{
+		    "path" : "pages/websockettest/websockettest",
+			"style": {
+				"navigationBarTitleText":"核销二维码",
+				"app-plus":{
+					"titleView":false
+				},
+				"enablePullDownRefresh":false
+			}
 		}
+		
 	    ,{
             "path" : "pages/login/login",
             "style" : {}
@@ -21,27 +29,52 @@
         ,{
             "path" : "pages/verify/verify",
             "style": {
-            	"navigationStyle":"custom",
+            	"navigationBarTitleText":"核销",
             	"app-plus":{
             		"titleView":false
-            	}
+            	},
+            	"enablePullDownRefresh":false
             }
         }
         ,{
             "path" : "pages/cosuuserverySuc/cosuuserverySuc",
-            "style" : {}
+            "style": {
+            	"navigationBarTitleText":"核销成功",
+            	"app-plus":{
+            		"titleView":false
+            	},
+            	"enablePullDownRefresh":false
+            }
         }
         ,{
             "path" : "pages/cosuuserveryFair/cosuuserveryFair",
-            "style" : {}
+            "style": {
+            	"navigationBarTitleText":"核销失败",
+            	"app-plus":{
+            		"titleView":false
+            	},
+            	"enablePullDownRefresh":false
+            }
         }
         ,{
             "path" : "pages/verifyuserverySuc/verifyuserverySuc",
-            "style" : {}
+            "style": {
+            	"navigationBarTitleText":"核销成功",
+            	"app-plus":{
+            		"titleView":false
+            	},
+            	"enablePullDownRefresh":false
+            }
         }
         ,{
             "path" : "pages/verifyuserveryFair/verifyuserveryFair",
-            "style" : {}
+            "style": {
+            	"navigationBarTitleText":"核销失败",
+            	"app-plus":{
+            		"titleView":false
+            	},
+            	"enablePullDownRefresh":true
+            }
         }
         
     ],

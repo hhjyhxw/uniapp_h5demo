@@ -26,7 +26,7 @@ const hosturl_dev = 'http://ld.haiyunzy.com/zlbean/';
 const imghosturl_dev =  'http://ld.haiyunzy.com/zlbean/';
 const jssdkUrl_dev =  'http://ld.haiyunzy.com/zlbean/jsSdkConfig/getJsSdkConfig';
 const websocketUrl_dev =  'ws://ld.haiyunzy.com/zlbean/api/webscoket';
-// const websocketUrl_dev =  'ws://192.168.110.1:8081/webscoket';
+// const websocketUrl_dev =  'ws://192.168.110.1:8081/zl-bean/api/webscoket';
 
 
 /**

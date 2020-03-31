@@ -15,7 +15,7 @@
 			<button @click="sharetoWx">分享</button>
 		</view>
 		<view class="text-area">
-			<image :src="qcode" class="qcode" @click="goqcode"></image>
+			<image  src="/static/logoss.png" class="qcode" @click="goqcode"></image>
 		</view>
 		<view class="text-area">
 			<button @click="saoyisao">扫一扫</button>
@@ -32,7 +32,9 @@
 				title: 'Hello',
 				hhh:'aaa',
 				activityId:'',
-				user:null,
+				user:{
+					nickname:''
+				},
 				cacuRecord:'',
 				verifyUser:'',
 				accessToken:'',
@@ -43,34 +45,41 @@
 			}
 		},
 		onLoad(option) {
-			//this.getssdk();
 			console.log("index_optio==="+JSON.stringify(option)); //h5token 、accetoken
-			this.activityId = option.activityId;//
-			this.accessToken =  option.id;
 			if(option.id!=null && option.id!=''){//从活动中登陆进入
 				uni.setStorageSync('accessToken',  option.id);
 				uni.setStorageSync('activityId',  option.activityId);
+				this.activityId = option.activityId;//
+				this.accessToken =  option.id;
+				//消费者扫用户核销码
 				if(option.code!=undefined && option.code!=null && option.code!='' && option.code!='null'){
-					uni.navigateTo({
-						url:'/pages/verify/verify?code='+option.code
+					uni.redirectTo({
+						url:'/pages/verify/verify?code='+option.code+'&activityId='+option.activityId
 					})
 				}
 				//获取用户相关信息
-				this.getScanindexInfo();
+				//this.getScanindexInfo();
 			}else{
 				this.activityId = uni.getStorageSync("activityId");
-				this.getScanindexInfo();
+				//this.getScanindexInfo();
 			}
 			
 			
 		},
 		onShow:function(){
 			this.getssdk();
+			if(this.activityId!=''){//从活动中登陆进入
+				//获取用户相关信息
+				 this.getScanindexInfo();
+			}else{
+				this.activityId = uni.getStorageSync("activityId");
+				this.getScanindexInfo();
+			}
 		},
 		methods: {
 			//获取主题信息
 			getScanindexInfo(){
-				this.$api.scanIndex({configId:this.activityId}).then(res =>
+				this.$api.scanIndex({activityId:this.activityId}).then(res =>
 						{
 							console.log("res==="+JSON.stringify(res)); //h5token 、accetoken
 							if(res.code==0){
@@ -81,16 +90,29 @@
 							}
 						}); 
 			},
-			async goqcode(){
-				 let result = await this.$api.getVerifyUserCode({activityId:this.activityId});
-				 console.log("goqcode_result==="+JSON.stringify(result)); //h5token 、accetoken
-				 if(result.code==0){
-					 uni.navigateTo({
-					 	url:'/pages/websockettest/websockettest?userId='+this.user.id+'&code='+result.code
-					 })
-				 }
+			 goqcode(){
+				 console.log("this.activityId==="+JSON.stringify(this.activityId)); //h5token 、accetoken
+				 this.$api.getVerifyUserCode({activityId:this.activityId}).then(res =>
+				 		{
+				 			console.log("getVerifyUserCode_res==="+JSON.stringify(res)); //h5token 、accetoken
+				 			if(res.code==0){
+				 				uni.redirectTo({
+				 					url:'/pages/websockettest/websockettest?userId='+this.user.id+'&code='+res.usercode
+				 				})
+				 			}
+				 		}); 
 				
 			},
+			// async goqcode(){
+			// 	 let result = await this.$api.getVerifyUserCode({activityId:this.activityId});
+			// 	 console.log("goqcode_result==="+JSON.stringify(result)); //h5token 、accetoken
+			// 	 if(result.code==0){
+			// 		 uni.redirectTo({
+			// 			url:'/pages/websockettest/websockettest?userId='+this.user.id+'&code='+result.usercode
+			// 		 })
+			// 	 }
+				
+			// },
 			//获取jssdk
 			getssdk(){
 				var url = window.location.href;
